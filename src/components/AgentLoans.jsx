@@ -15,7 +15,7 @@ import { Spinner } from 'reactstrap';
 
 import CreateLoan from "./CreateLoan";
 
-class LoanTableList extends Component {
+class UserLoanTableList extends Component {
   state = {
     loans: [],
     offset: 0,
@@ -37,50 +37,14 @@ class LoanTableList extends Component {
       <div className="content">
         <div><h3 className="mr-auto">Loans</h3><CreateLoan/></div>
        {this.state.isDeleteAlert ? <Alert color="success">Item was Deleted successfully</Alert> : <div></div>}
-        <Table striped size="sm" responsive>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Customer Name</th>
-          <th>User</th>
-          <th>Amount</th>
-          <th>Tenure</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-        this.state.isLoading ? <Spinner style={{ justifyContent:"center" }} color="primary" /> : 
-        this.state.loans.map((loan, key) => 
-          <tr key={loan._id}>
-          <th scope="row">
-            <Moment
-            format="YYYY/MM/DD"
-            date={loan.createdAt}
-            />
-            </th>
-          <td onClick={() => {}}>{loan.customerName}</td>
-          <td>{loan.user}</td>
-          <td>{loan.amount}</td>
-          <td>{loan.loanTenure}</td>
-          <td>{loan.loanStatus}</td>
-          <td><Button color="primary" size="sm" onClick={() => {if(window.confirm('Delete this loan?'))this.handleDelete(loan._id)}}>Delete</Button>{' '}
-              <Button color="secondary" size="sm" onClick={() => this.handleEdit(loan._id)}>Edit</Button></td>
-        </tr>
-        )}
         
-      </tbody>
-    </Table>
       </div>
     );
   }
 
   componentDidMount = async () => {
 
-  
-
-    const resp = await fetch("http://localhost:3300/loans", {
+    const resp = await fetch(`http://localhost:3300/loans/${userId}`, {
     headers: {
       "Content-Type": "application/json",
       'Accept': 'application/json',
@@ -123,4 +87,4 @@ class LoanTableList extends Component {
 
 }
 
-export default LoanTableList;
+export default UserLoanTableList;

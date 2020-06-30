@@ -1,14 +1,15 @@
 import React from "react";
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Container } from "@material-ui/core";
 
-class Loan extends React.Component {
+class CreateLoanUser extends React.Component {
     state = {
         
         customerName: "",
         gender: "",
         amount: "",
         loanTenure: "",
-        user: this.props.userId
+        user: this.props.match.params.id
         
     }
 
@@ -23,6 +24,9 @@ class Loan extends React.Component {
         const { customerName, gender, amount, loanTenure, user } = this.state
         return (
             <>
+            <Container>
+                <Button onClick={() => this.handleBack()}>Go Back</Button>
+                <div><h3>Loan Application Form</h3></div>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="customerName">Name</Label>
@@ -58,8 +62,13 @@ class Loan extends React.Component {
                     
                     <Button>Submit</Button>
                 </Form>
+                </Container>
             </>
         );
+    }
+
+    handleBack = () => {
+        
     }
 
     handleSubmit = async (e, name, username, password, role, deposit, commission) => {
@@ -83,9 +92,12 @@ class Loan extends React.Component {
             JSON.stringify(this.state)
 
             this.setState({ customerName: '', gender: '', amount: '', loanTenure: '', user: '' })
+            this.props.history.push("/user/"+this.props.match.params.id)
 
     }
 
+    
+
 }
 
-export default Loan;
+export default CreateLoanUser;

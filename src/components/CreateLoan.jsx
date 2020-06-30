@@ -49,7 +49,7 @@ function CreateLoan(){
           <h2 ref={_subtitle => (subtitle = _subtitle)}>Loan Application</h2>
           <button onClick={closeModal}>close</button>
           <div>Complete the Form</div>
-          <Loan/>
+          <Loan />
         </Modal>
       </div>
     );

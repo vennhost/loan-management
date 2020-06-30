@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
             })
            } else {
           this.setState({
-              redirect: "/loans",
+              redirect: `/user/${result.user._id}`,
               isAuthenticated: true
           })
         }

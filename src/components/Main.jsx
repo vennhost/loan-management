@@ -7,6 +7,8 @@ import UserPage from "./UserPage";
 import Users from "./Users";
 import Loans from "./Loans";
 import UserLoan from "./UserLoan";
+import CreateLoan from "./CreateLoan";
+import CreateLoanUser from "./CreateLoanUser";
 
 
 
@@ -20,6 +22,7 @@ class Main extends React.Component {
                     <Route path="/user/:id" component={UserPage} />
                     <Route path="/users/" component={Users} />
                     <Route path="/loan/:id" component={UserLoan} />
+                    <Route path="/createloan/:id" component={CreateLoanUser} />
                     <Route path="/loans" component={Loans} />
                     
                     <Route path="/" exact component={Home} />

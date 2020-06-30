@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title-text {
+  font-family: 'Poller One', cursive;
+}
+
+.item-text {
+  font-family: 'PT Mono', monospace;
+}

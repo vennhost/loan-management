@@ -36,7 +36,7 @@ class AgentTableList extends Component {
           <td>{user.deposit}</td>
           <td>{user.commission}</td>
           <td>{user.role}</td>
-          <td><Button color="primary" size="sm" onClick={this.handleDelete}>Delete</Button>{' '}
+          <td><Button color="primary" size="sm" onClick={() => {if(window.confirm('Delete this user?'))this.handleDelete(user._id)}}>Delete</Button>{' '}
               <Button color="secondary" size="sm" onClick={this.handleEdit}>Edit</Button></td>
         </tr>
         )}
@@ -68,8 +68,18 @@ class AgentTableList extends Component {
 
   }
 
-  handleDelete = () => {
-    alert("Deleted!")
+  handleDelete = async (user_id) => {
+    const users = [...this.state.users]
+    const remainUsers = users.filter(item => item._id != user_id)
+    
+    const resp = await fetch(`http://localhost:3300/users/${user_id}`, {
+      method: 'DELETE'
+    })
+    //alert("Deleted Successfully")
+    this.setState({
+      users: [...remainUsers],
+      isDeleteAlert: true
+    })
   }
 
   handleEdit = () => {
