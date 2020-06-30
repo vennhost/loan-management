@@ -11,6 +11,7 @@ class LoginForm extends React.Component {
       username: null,
       password: null,
       login: false,
+      token: null,
       store: null,
       isAuthenticated: false,
       redirect: null
@@ -37,10 +38,19 @@ class LoginForm extends React.Component {
              login: true,
              token: result.access_token
            }))
+           console.log("My Token", localStorage.login)
 
+           if (result.user.role === "admin") {
+            this.setState({
+                redirect: `/admin/${result.user._id}`,
+                isAuthenticated: true
+            })
+           } else {
           this.setState({
-              redirect: "/loans"
+              redirect: "/loans",
+              isAuthenticated: true
           })
+        }
        
 
 
@@ -60,13 +70,14 @@ class LoginForm extends React.Component {
 
 
     return (
-    
-    
+        <>
+     { this.state.isAuthenticated ? <div>"Loggedin"</div> :
         
       <AvForm
         onValidSubmit={this.handleValidSubmit}
         onInvalidSubmit={this.handleInvalidSubmit}
       >
+          
         <AvField
           name="username"
           label="Email"
@@ -102,9 +113,12 @@ class LoginForm extends React.Component {
         />
         <Button id="submit">Submit</Button>
       </AvForm>
-        
+     }
+
+     </>
     );
   }
 }
+
 
 export default LoginForm;

@@ -16,7 +16,7 @@ class Main extends React.Component {
         return (
             <>
                 <Router>
-                    <Route path="/admin" component={Admin} />
+                    <Route path="/admin/:id" component={Admin} />
                     <Route path="/user/:id" component={UserPage} />
                     <Route path="/users/" component={Users} />
                     <Route path="/loan/:id" component={UserLoan} />

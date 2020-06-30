@@ -2,14 +2,20 @@ import React, { component } from "react";
 import Header from "./Header";
 import { Container, Row, Col, Card, CardBody, Jumbotron } from "reactstrap";
 import Login from "./Login";
+import { Redirect } from "react-router-dom"
 //import "../../src/index.css"
 
 
 class Home extends React.Component {
     state = {
+        isAuthenticated: false
        
     }
     render() {
+
+        if (this.state.isAuthenticated) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <>
                 {/* <Header /> */}
@@ -45,6 +51,16 @@ class Home extends React.Component {
                 </Container>
             </>
         );
+    }
+
+    componentDidMount = async () => {
+        console.log(localStorage)
+        if (this.state.isAuthenticated) {
+            this.setState({
+                redirect: "/loans"
+            })
+
+        }
     }
 }
 
