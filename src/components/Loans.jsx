@@ -4,7 +4,7 @@ import { Table, Button } from 'reactstrap';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Moment from "react-moment";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Alert } from 'reactstrap';
 import { Spinner } from 'reactstrap';
 
@@ -23,7 +23,8 @@ class LoanTableList extends Component {
     currentPage: 0,
     isDeleteAlert: false,
     isOpen: true,
-    isLoading: true
+    isLoading: true,
+    redirect: null
   }
 
   onDismiss = () => {
@@ -31,6 +32,10 @@ class LoanTableList extends Component {
   }
   
   render() {
+
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />
+  }
 
     //const history = useHistory()
     return (
@@ -53,7 +58,8 @@ class LoanTableList extends Component {
         {
         this.state.isLoading ? <Spinner style={{ justifyContent:"center" }} color="primary" /> : 
         this.state.loans.map((loan, key) => 
-          <tr key={loan._id}>
+          
+          <tr key={loan._id} onClick={() => this.setState({redirect: `/loan/${loan._id}`})}>
           <th scope="row">
             <Moment
             format="YYYY/MM/DD"
@@ -117,7 +123,19 @@ class LoanTableList extends Component {
     
   }
 
-  handleEdit = () => {
+  handleEdit = async (id) => {
+
+    const loans = [...this.state.loans]
+    const loanToApprove = loans.filter(item => item._id != id)
+    const resp = await fetch(`http://localhost:3300/loans/${id}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    const loanStatus = this.state.loan.loanStatus
+
     alert("Edited!")
   }
 

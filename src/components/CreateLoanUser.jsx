@@ -57,7 +57,7 @@ class CreateLoanUser extends React.Component {
                             id="user"
                             placeholder="user id"
                             value={user}
-                            onChange={this.handleChange}
+                            /* onChange={this.handleChange} */
                         />
                     </FormGroup>
                     

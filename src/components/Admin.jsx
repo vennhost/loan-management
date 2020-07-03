@@ -7,9 +7,11 @@ import NavBar from "./Header";
 
 
 
+
 class Admin extends React.Component {
     state = {
-        user: {}
+        user: {},
+        total: null
     }
 
 
@@ -55,7 +57,18 @@ class Admin extends React.Component {
             user: user
         })
 
-        console.log(this.state.user.name)
+        const totalLoan = await fetch("http://localhost:3300/loans/totals", {
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+            }
+        })
+
+        const total = await totalLoan.json()
+        console.log("total", total)
+        this.setState({
+            total: total
+        })
     }
 
 }
