@@ -51,7 +51,7 @@ class AgentTableList extends Component {
 
   
 
-    const resp = await fetch("http://localhost:3300/users", {
+    const resp = await fetch("https://loan-be.herokuapp.com/users", {
     headers: {
       "Content-Type": "application/json",
       'Accept': 'application/json',
