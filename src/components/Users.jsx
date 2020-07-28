@@ -72,7 +72,7 @@ class AgentTableList extends Component {
     const users = [...this.state.users]
     const remainUsers = users.filter(item => item._id != user_id)
     
-    const resp = await fetch(`http://localhost:3300/users/${user_id}`, {
+    const resp = await fetch(`https://loan-be.herokuapp.com/users/${user_id}`, {
       method: 'DELETE'
     })
     //alert("Deleted Successfully")

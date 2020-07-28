@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
     event.preventDefault();
 
 
-        const response = await fetch("http://localhost:3300/users/login", {
+        const response = await fetch("https://loan-be.herokuapp.com/users/login", {
          method: "POST",
          headers: {
            "Content-Type": "application/json"

@@ -51,7 +51,7 @@ class UserLoan extends React.Component {
 
     componentDidMount = async () => {
         const loanId = this.props.match.params.id
-        const resp = await fetch(`http://localhost:3300/loans/${loanId}`, {
+        const resp = await fetch(`https://loan-be.herokuapp.com/loans/${loanId}`, {
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'
@@ -67,7 +67,7 @@ class UserLoan extends React.Component {
         /* users api */
 
         const userId = loan.user
-        const response = await fetch(`http://localhost:3300/users/${userId}`, {
+        const response = await fetch(`https://loan-be.herokuapp.com/users/${userId}`, {
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'

@@ -77,7 +77,7 @@ class CreateLoanUser extends React.Component {
 
         console.log("state", this.state)
 
-        const response = await fetch("http://localhost:3300/loans", {
+        const response = await fetch("https://loan-be.herokuapp.com/loans", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

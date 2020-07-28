@@ -78,7 +78,7 @@ class Register extends React.Component {
 
         console.log("state", this.state)
 
-        const response = await fetch("http://localhost:3300/users/register", {
+        const response = await fetch("https://loan-be.herokuapp.com/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -86,7 +86,7 @@ class LoanTableList extends Component {
 
   
 
-    const resp = await fetch("http://localhost:3300/loans", {
+    const resp = await fetch("https://loan-be.herokuapp.com/loans", {
     headers: {
       "Content-Type": "application/json",
       'Accept': 'application/json',
@@ -111,7 +111,7 @@ class LoanTableList extends Component {
     const loans = [...this.state.loans]
     const remainLoans = loans.filter(item => item._id != loan_id)
     
-    const resp = await fetch(`http://localhost:3300/loans/${loan_id}`, {
+    const resp = await fetch(`https://loan-be.herokuapp.com/loans/${loan_id}`, {
       method: 'DELETE'
     })
     //alert("Deleted Successfully")
@@ -127,7 +127,7 @@ class LoanTableList extends Component {
 
     const loans = [...this.state.loans]
     const loanToApprove = loans.filter(item => item._id != id)
-    const resp = await fetch(`http://localhost:3300/loans/${id}`, {
+    const resp = await fetch(`https://loan-be.herokuapp.com/loans/${id}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",

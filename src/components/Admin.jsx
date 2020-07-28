@@ -44,7 +44,7 @@ class Admin extends React.Component {
     componentDidMount = async () => {
         const userId = this.props.match.params.id
         console.log("UserID",userId)
-        const resp = await fetch("http://localhost:3300/users/"+userId, {
+        const resp = await fetch("https://loan-be.herokuapp.com/users/"+userId, {
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'
@@ -57,7 +57,7 @@ class Admin extends React.Component {
             user: user
         })
 
-        const totalLoan = await fetch("http://localhost:3300/loans/totals", {
+        const totalLoan = await fetch("https://loan-be.herokuapp.com/loans/totals", {
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'
